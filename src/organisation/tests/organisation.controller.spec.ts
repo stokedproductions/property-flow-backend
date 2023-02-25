@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { OrganisationController } from './organisation.controller';
-import { OrganisationService } from './organisation.service';
+import { OrganisationController } from '../organisation.controller';
+import { OrganisationService } from '../organisation.service';
 
 describe('OrganisationController', () => {
   let controller: OrganisationController;
