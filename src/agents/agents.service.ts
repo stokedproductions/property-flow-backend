@@ -23,7 +23,7 @@ export class AgentsService {
   }
 
   async update(id: string, updateAgentDto: UpdateAgentDto): Promise<Agent> {
-    return await this.AgentModel.findByIdAndUpdate(id, updateAgentDto)
+    return await this.AgentModel.findByIdAndUpdate(id, updateAgentDto, {new : true})
   }
 
   async remove(id: string): Promise<Agent> {
