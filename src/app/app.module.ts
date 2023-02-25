@@ -10,6 +10,7 @@ import { AppConfigurationModule } from 'src/config/config.module';
 
 import { MongooseModule, MongooseModuleOptions  } from '@nestjs/mongoose';
 import { OrganisationModule } from 'src/organisation/organisation.module';
+import { AgentsModule } from 'src/agents/agents.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { OrganisationModule } from 'src/organisation/organisation.module';
       },
     }),
     OrganisationModule,
+    AgentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
