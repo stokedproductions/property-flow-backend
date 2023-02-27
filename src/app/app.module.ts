@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -8,10 +8,13 @@ import { AppConfigurationModule } from 'src/config/config.module';
 
 // mongo stuff
 
-import { MongooseModule, MongooseModuleOptions  } from '@nestjs/mongoose';
+import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
 import { OrganisationModule } from 'src/organisation/organisation.module';
 import { AgentsModule } from 'src/agents/agents.module';
 import { ListingsModule } from 'src/listings/listings.module';
+
+import { AuthMiddleware } from 'src/middleware/auth/auth.middleware';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
@@ -30,9 +33,15 @@ import { ListingsModule } from 'src/listings/listings.module';
     }),
     OrganisationModule,
     AgentsModule,
-    ListingsModule
+    ListingsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(AuthMiddleware).forRoutes('');
+  }
+}
