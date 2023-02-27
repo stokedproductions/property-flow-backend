@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { ListingsService } from './listings.service';
 import { CreateListingDto } from './dto/create-listing.dto';
 import { UpdateListingDto } from './dto/update-listing.dto';
@@ -14,7 +14,14 @@ export class ListingsController {
   }
 
   @Get()
-  findAll() {
+  findAll(@Query() query) : Promise<Listing[]>{
+    // If Org Id is given only show there listing else send back all agents
+    if (Object.keys(query).length && query.hasOwnProperty('organisationID')) {
+      return this.listingsService.findAllForGivenOrgID(query['organisationID']);
+    }
+    else if (Object.keys(query).length && query.hasOwnProperty('agentID')) {
+      return this.listingsService.findAllForGivenAgentID(query['agentID']);
+    }
     return this.listingsService.findAll();
   }
 

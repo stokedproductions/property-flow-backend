@@ -9,5 +9,8 @@ export const AgentSchema = new mongoose.Schema({
     email: String,
     contactNumber: String,
     profileImageUrl: String,
-    organisation: String,
+    organisation: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Organisation',
+    },
 })

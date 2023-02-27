@@ -1,6 +1,9 @@
 import * as mongoose from 'mongoose';
 
 export const ListingSchema = new mongoose.Schema({
+    // TODO REMOVE _id from scheme if we want it to autogenerate
+    // but we need to use it when import data from data dump so we 
+    // can keep ids already in the data
     _id : String,
     agent : {
         type: mongoose.Schema.Types.ObjectId,

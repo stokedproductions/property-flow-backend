@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { AgentsService } from './agents.service';
 import { CreateAgentDto } from './dto/create-agent.dto';
 import { UpdateAgentDto } from './dto/update-agent.dto';
@@ -14,8 +14,11 @@ export class AgentsController {
   }
 
   @Get()
-  findAll() : Promise<Agent[]> {
-    // Todo return all agents bellonging to a specific Organisation if Org is supplied
+  findAll(@Query() query) : Promise<Agent[]> {
+    // If Org. Id is given only show there agents else send back all agents
+    if (Object.keys(query).length && query.hasOwnProperty('organisationID')) {
+      return this.agentsService.findAllForGivenOrgID(query['organisationID']);
+    }
     return this.agentsService.findAll();
   }
 

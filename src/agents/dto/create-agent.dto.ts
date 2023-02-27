@@ -1,3 +1,5 @@
+import { Schema as MongooseSchema } from 'mongoose';
+
 export class CreateAgentDto {
     private readonly _id: string;
     private readonly firstName: string;
@@ -5,4 +7,5 @@ export class CreateAgentDto {
     private readonly email: string;
     private readonly contactNumber: string;
     private readonly profileImageUrl: string;
+    private readonly organisation: MongooseSchema.Types.ObjectId;
 }

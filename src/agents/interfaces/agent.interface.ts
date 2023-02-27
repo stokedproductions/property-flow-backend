@@ -1,3 +1,4 @@
+import { Schema as MongooseSchema } from 'mongoose';
 export interface Agent {
     _id?: string; // if we may not always have a _id when creating
     firstName: string;
@@ -5,5 +6,5 @@ export interface Agent {
     email?: string;
     contactNumber?: string;
     profileImageUrl?: string;
-    organisation?: string;
+    organisation?: MongooseSchema.Types.ObjectId;
 }

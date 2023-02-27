@@ -1,10 +1,12 @@
+import { Schema as MongooseSchema } from 'mongoose';
+
 export class CreateListingDto {
     private readonly _id : string;
-    private readonly agent : string;
+    private readonly agent : MongooseSchema.Types.ObjectId;
     private readonly title : string;
     private readonly description : string;
     private readonly status : string;
-    private readonly organisation : string;
+    private readonly organisation : MongooseSchema.Types.ObjectId;
     private readonly listingType : string;
     private readonly listingSector : string;
     private readonly unit : {
