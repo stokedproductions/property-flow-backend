@@ -21,7 +21,7 @@ export class ListingsService {
   }
 
   async findAll(): Promise<Listing[]> {
-    return await this.listingModel.find();
+    return await this.listingModel.find().populate({path: 'organisation', select: '_id logoUrl'});
   }
 
   async findAllForGivenOrgID(orgId: string) : Promise<Listing[]> {
