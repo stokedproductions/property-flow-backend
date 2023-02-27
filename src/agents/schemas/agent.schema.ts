@@ -1,7 +1,5 @@
 import * as mongoose from 'mongoose';
 
-// TODO ADD REFERENCE TO ORGANISATION
-
 export const AgentSchema = new mongoose.Schema({
     _id: String,
     firstName: String,
